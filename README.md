@@ -6,6 +6,7 @@
 ## Live Demo Link 
 
 https://helenl9098.github.io/hw03-environment-setpiece/
+
 Make browser window smaller to increase FPS. 
 May have to increase brightness as well, for the scene is intentionally dimly lit. 
 

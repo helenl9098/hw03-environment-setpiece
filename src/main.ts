@@ -10,8 +10,8 @@ import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
 // Define an object with application parameters and button callbacks
 // This will be referred to by dat.GUI's functions that add GUI elements.
 const controls = {
-  tesselations: 5,
-  'Load Scene': loadScene, // A function pointer, essentially
+  stickiness: 0.1,
+  bounceSpeed: 70.0
 };
 
 let square: Square;
@@ -48,6 +48,7 @@ function main() {
   // Add controls to the gui
   const gui = new DAT.GUI();
 
+
   // get canvas and webgl context
   const canvas = <HTMLCanvasElement> document.getElementById('canvas');
   const gl = <WebGL2RenderingContext> canvas.getContext('webgl2');
@@ -61,7 +62,7 @@ function main() {
   // Initial call to load scene
   loadScene();
 
-  const camera = new Camera(vec3.fromValues(0, 0, -10), vec3.fromValues(0, 0, 0));
+  const camera = new Camera(vec3.fromValues(-8, -2, -35), vec3.fromValues(3, 4, 0));
 
   const renderer = new OpenGLRenderer(canvas);
   renderer.setClearColor(164.0 / 255.0, 233.0 / 255.0, 1.0, 1);
@@ -85,7 +86,7 @@ function main() {
     processKeyPresses();
     renderer.render(camera, flat, [
       square,
-    ], time);
+    ], time, controls.stickiness, controls.bounceSpeed);
     time++;
     stats.end();
 
